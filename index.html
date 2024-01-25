@@ -61,6 +61,12 @@
         button:hover {
             background-color: #005bb5;
         }
+
+        @media print {
+            button {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -108,8 +114,8 @@
             var checklistContainer = document.getElementById(checklistId);
             var printWindow = window.open('', '_blank');
             printWindow.document.write('<html><head><title>Print Checklist</title>');
-            printWindow.document.write('</head><body>');
             printWindow.document.write('<style>@media print {button {display: none;}}</style>');
+            printWindow.document.write('</head><body>');
             printWindow.document.write(checklistContainer.innerHTML);
             printWindow.document.write('</body></html>');
             printWindow.document.close();
