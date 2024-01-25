@@ -71,7 +71,7 @@
 </head>
 
 <body>
-    <div class="checklist-container">
+    <div class="checklist-container" id="morning-checklist-container">
         <h1>Morning Shift Checklist</h1>
         <ul>
             <li><input type="checkbox" id="morning-task1"> Check handovers from the previous shift</li>
@@ -93,7 +93,7 @@
         <button class="print" onclick="printChecklist('morning')">Print Checklist</button>
     </div>
 
-    <div class="checklist-container">
+    <div class="checklist-container" id="late-checklist-container">
         <h1>Late Shift Checklist</h1>
         <ul>
             <li><input type="checkbox" id="late-task1"> Get handover from early shift</li>
@@ -110,7 +110,7 @@
 
     <script>
         function printChecklist(shift) {
-            var checklistId = shift === 'morning' ? 'checklist-container' : 'checklist-container';
+            var checklistId = shift === 'morning' ? 'morning-checklist-container' : 'late-checklist-container';
             var checklistContainer = document.getElementById(checklistId);
             var printWindow = window.open('', '_blank');
             printWindow.document.write('<html><head><title>Print Checklist</title>');
