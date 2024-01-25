@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receptionist Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        #checklist-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0073e6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #0073e6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button.print {
+            background-color: #4caf50;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="checklist-container">
+        <h1>Hotel Receptionist Checklist</h1>
+        <ul>
+            <li><input type="checkbox" id="task1"> Check handovers from the previous shift</li>
+            <li><input type="checkbox" id="task2"> Count the float and inform the shift leader of any issues</li>
+            <li><input type="checkbox" id="task3"> Delete emails from Booking.com</li>
+            <li><input type="checkbox" id="task4"> Print registration cards</li>
+            <li><input type="checkbox" id="task5"> Flip the registration cards from departure rooms</li>
+            <li><input type="checkbox" id="task6"> Check balances and settle sales ledgers and virtual cards</li>
+            <li><input type="checkbox" id="task7"> Check traces for special requests from arriving guests</li>
+            <li><input type="checkbox" id="task8"> Check changes for Air Canada</li>
+            <li><input type="checkbox" id="task9"> After 12:00 PM, make a list of rooms due to check out and call the rooms</li>
+            <li><input type="checkbox" id="task10"> Go to rooms and check for luggage if there is no answer</li>
+            <li><input type="checkbox" id="task11"> Break time between 12:00 PM and 1:30 PM</li>
+            <li><input type="checkbox" id="task12"> Receptionist clocks out at 3:00 PM</li>
+            <li><input type="checkbox" id="task13"> Before clocking out, close the cashier</li>
+            <li><input type="checkbox" id="task14"> Count the float again and get a signature from the shift leader</li>
+            <li><input type="checkbox" id="task15"> Pass the handover to the next shift</li>
+        </ul>
+        <button class="print" onclick="printChecklist()">Print Checklist</button>
+        <button onclick="confirmCompletion()">Complete Checklist</button>
+    </div>
+
+    <script>
+        function printChecklist() {
+            window.print();
+        }
+
+        function confirmCompletion() {
+            var allTasksChecked = document.querySelectorAll('input[type="checkbox"]:not(:checked)').length === 0;
+
+            if (allTasksChecked) {
+                alert("Checklist completed successfully!");
+            } else {
+                alert("Please make sure to complete all tasks before confirming.");
+            }
+        }
+    </script>
+</body>
+
+</html>
