@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receptionist Checklist</title>
+    <title>Hotel Receptionist Checklists</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             color: #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
         }
 
-        #checklist-container {
+        .checklist-container {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 20px;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -61,42 +65,55 @@
 </head>
 
 <body>
-    <div id="checklist-container">
-        <h1> Checklist - Early Shift </h1>
+    <div class="checklist-container">
+        <h1>Morning Shift Checklist</h1>
         <ul>
-            <li><input type="checkbox" id="task1"> Check handovers from the previous shift</li>
-            <li><input type="checkbox" id="task2"> Count the float and inform the shift leader of any issues</li>
-            <li><input type="checkbox" id="task3"> Delete emails from Booking.com</li>
-            <li><input type="checkbox" id="task4"> Print registration cards</li>
-            <li><input type="checkbox" id="task5"> Flip the registration cards from departure rooms</li>
-            <li><input type="checkbox" id="task6"> Check balances and settle sales ledgers and virtual cards</li>
-            <li><input type="checkbox" id="task7"> Check traces for special requests from arriving guests</li>
-            <li><input type="checkbox" id="task8"> Check changes for Air Canada</li>
-            <li><input type="checkbox" id="task9"> After 12:00 PM, make a list of rooms due to check out and call the rooms</li>
-            <li><input type="checkbox" id="task10"> Go to rooms and check for luggage if there is no answer</li>
-            <li><input type="checkbox" id="task11"> Break time between 12:00 PM and 1:30 PM</li>
-            <li><input type="checkbox" id="task12"> Receptionist clocks out at 3:00 PM</li>
-            <li><input type="checkbox" id="task13"> Before clocking out, close the cashier</li>
-            <li><input type="checkbox" id="task14"> Count the float again and get a signature from the shift leader</li>
-            <li><input type="checkbox" id="task15"> Pass the handover to the next shift</li>
+            <li><input type="checkbox" id="morning-task1"> Check handovers from the previous shift</li>
+            <li><input type="checkbox" id="morning-task2"> Count the float and inform the shift leader of any issues</li>
+            <li><input type="checkbox" id="morning-task3"> Delete emails from Booking.com</li>
+            <li><input type="checkbox" id="morning-task4"> Print registration cards</li>
+            <li><input type="checkbox" id="morning-task5"> Flip the registration cards from departure rooms</li>
+            <li><input type="checkbox" id="morning-task6"> Check balances and settle sales ledgers and virtual cards</li>
+            <li><input type="checkbox" id="morning-task7"> Check traces for special requests from arriving guests</li>
+            <li><input type="checkbox" id="morning-task8"> Check changes for Air Canada</li>
+            <li><input type="checkbox" id="morning-task9"> After 12:00 PM, make a list of rooms due to check out and call the rooms</li>
+            <li><input type="checkbox" id="morning-task10"> Go to rooms and check for luggage if there is no answer</li>
+            <li><input type="checkbox" id="morning-task11"> Break time between 12:00 PM and 1:30 PM</li>
+            <li><input type="checkbox" id="morning-task12"> Receptionist clocks out at 3:00 PM</li>
+            <li><input type="checkbox" id="morning-task13"> Before clocking out, close the cashier</li>
+            <li><input type="checkbox" id="morning-task14"> Count the float again and get a signature from the shift leader</li>
+            <li><input type="checkbox" id="morning-task15"> Pass the handover to the next shift</li>
         </ul>
-        <button class="print" onclick="printChecklist()">Print Checklist</button>
-        <button onclick="confirmCompletion()">Complete Checklist</button>
+        <button class="print" onclick="printChecklist('morning')">Print Checklist</button>
+    </div>
+
+    <div class="checklist-container">
+        <h1>Late Shift Checklist</h1>
+        <ul>
+            <li><input type="checkbox" id="late-task1"> Get handover from early shift</li>
+            <li><input type="checkbox" id="late-task2"> Count float</li>
+            <li><input type="checkbox" id="late-task3"> Make sure all departures are done for the day</li>
+            <li><input type="checkbox" id="late-task4"> Create new blocks for Air Canada</li>
+            <li><input type="checkbox" id="late-task5"> After 20:00, check Air Canada changes for the next day</li>
+            <li><input type="checkbox" id="late-task6"> Before clocking out, close the cashier</li>
+            <li><input type="checkbox" id="late-task7"> Count the float again and get a signature from the shift leader</li>
+            <li><input type="checkbox" id="late-task8"> Pass the handover to the next shift</li>
+        </ul>
+        <button class="print" onclick="printChecklist('late')">Print Checklist</button>
     </div>
 
     <script>
-        function printChecklist() {
-            window.print();
-        }
-
-        function confirmCompletion() {
-            var allTasksChecked = document.querySelectorAll('input[type="checkbox"]:not(:checked)').length === 0;
-
-            if (allTasksChecked) {
-                alert("Checklist completed successfully!");
-            } else {
-                alert("Please make sure to complete all tasks before confirming.");
-            }
+        function printChecklist(shift) {
+            var checklistId = shift === 'morning' ? 'checklist-container' : 'checklist-container';
+            var checklistContainer = document.getElementById(checklistId);
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Print Checklist</title>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write('<style>@media print {button {display: none;}}</style>');
+            printWindow.document.write(checklistContainer.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
         }
     </script>
 </body>
